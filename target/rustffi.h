@@ -14,9 +14,9 @@
 #include <stdint.h>
 #include <stdlib.h>
 
-typedef struct Expertise Expertise;
-
 typedef struct c_expertise c_expertise;
+
+typedef struct c_person c_person;
 
 #ifdef __cplusplus
 extern "C" {
@@ -26,7 +26,13 @@ c_expertise *expertise_create(const char *field, size_t experience);
 
 void expertise_print(c_expertise *wrapper);
 
-void expertise_destroy(Expertise *expertise);
+void expertise_destroy(c_expertise *wrapper);
+
+c_person *person_create(const char *name, c_expertise *c_expertise);
+
+void person_print(c_person *wrapper);
+
+void person_destroy(c_person *wrapper);
 
 #ifdef __cplusplus
 } // extern "C"

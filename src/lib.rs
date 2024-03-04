@@ -2,4 +2,4 @@
 
 pub mod person;
 pub mod expertise;
-pub mod wrapper;
+pub mod c_wrapper;
