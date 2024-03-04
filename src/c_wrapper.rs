@@ -29,7 +29,9 @@ pub unsafe extern "C" fn expertise_create(
 
 #[no_mangle]
 pub unsafe extern "C" fn expertise_print(wrapper: *mut c_expertise) {
-    println!("{:?}", (*wrapper).expertise)
+    if !wrapper.is_null() {
+        println!("{:?}", (*wrapper).expertise)
+    }
 }
 
 #[no_mangle]
@@ -66,13 +68,11 @@ pub unsafe extern "C" fn person_create(
     name: *const c_char,
     c_expertise: *mut c_expertise,
 ) -> *mut c_person {
-
     let rust_name = CStr::from_ptr(name).to_str().expect("Bad encoding").to_owned();
     let person = Person{
         name: rust_name,
         expertise: &mut (*c_expertise).expertise,
     };
-
     let wrapper = c_person{
         person
     };
