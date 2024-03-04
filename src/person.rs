@@ -1,13 +1,13 @@
-use crate::c_wrapper::c_expertise;
 use crate::expertise::Expertise;
+
 #[derive(Debug)]
 pub struct Person {
     pub name: String,
-    pub expertise: *mut c_expertise,
+    pub expertise: *mut Expertise,
 }
 
 impl Person {
-    pub fn new(name: String, expertise: *mut c_expertise) -> Person {
+    pub fn new(name: String, expertise: *mut Expertise) -> Person {
         Person{
             name,
             expertise

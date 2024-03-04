@@ -54,7 +54,7 @@ pub unsafe extern "C" fn person_create(
     let rust_name = CStr::from_ptr(name).to_str().expect("Bad encoding").to_owned();
     let person = Person{
         name: rust_name,
-        expertise: c_expertise,
+        expertise: &mut (*c_expertise).expertise,
     };
 
     let wrapper = c_person{
@@ -65,7 +65,8 @@ pub unsafe extern "C" fn person_create(
 
 #[no_mangle]
 pub unsafe extern "C" fn person_print(wrapper: *mut c_person) {
-    println!("{:?}", (*wrapper).person)
+    println!("{:?}", (*wrapper).person);
+    println!("{:?}", *(*wrapper).person.expertise);
 }
 
 #[no_mangle]
